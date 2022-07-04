@@ -16,6 +16,10 @@ public class Simulation {
         return numOfRuns;
     }
 
+    public Bins getBins() {
+        return bins;
+    }
+
     public void runSimulation() {
         for (int i = 0; i < numOfRuns; i++) {
             bins.incrementBin(dice.tossAndSum());
@@ -35,14 +39,13 @@ public class Simulation {
             String freq = BigDecimal.valueOf((double) sumNum / (double) numOfRuns).setScale(2, RoundingMode.HALF_UP)
                     .toString();
 
-            int roundedPercent = (int) Math.round((double) sumNum / (double) numOfRuns);
-            String stars = new String(new char[roundedPercent]).replace("\0", "*");
-            String line = String.format("%1s : %4d: ");
+            int roundedPercent = (int) Math.round(((double) sumNum / (double) numOfRuns) * 100);
+            String stars = "*".repeat(roundedPercent);
+            String line = String.format("%7s :%7d: ", i + 1, sumNum);
 
             lineStr.append(line);
             lineStr.append(freq + " ");
-            lineStr.append(stars + "%n");
-
+            lineStr.append(stars + "\n");
             res.append(lineStr);
         }
 
@@ -51,7 +54,11 @@ public class Simulation {
     }
 
     public static void main(String[] args) {
+        Simulation sim = new Simulation(2, 10000);
 
+        sim.runSimulation();
+
+        sim.printResults();
     }
 
 

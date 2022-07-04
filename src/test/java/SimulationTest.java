@@ -22,6 +22,16 @@ class SimulationTest {
 
     @Test
     void testRunSimulation() {
+        sim.runSimulation();
+        Bins bins = sim.getBins();
+        int expectedSum = 1000;
+
+        int actualSum = 0;
+        for (int i = bins.getLowerBound() - 1; i < bins.getResults().length; i++) {
+            actualSum += bins.getBin(i + 1);
+        }
+
+        assertEquals(expectedSum, actualSum);
     }
 
 }
