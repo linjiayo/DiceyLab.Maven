@@ -14,7 +14,7 @@ public class Dice {
         int runningSum = 0;
         Random rand = new Random();
         for (int i = 0; i < getDiceAmt(); i++) {
-            runningSum += rand.nextInt(1, 7);
+            runningSum += rand.nextInt(6) + 1;
         }
         return runningSum;
     }

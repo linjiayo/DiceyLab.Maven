@@ -40,7 +40,7 @@ public class Simulation {
                     .toString();
 
             int roundedPercent = (int) Math.round(((double) sumNum / (double) numOfRuns) * 100);
-            String stars = "*".repeat(roundedPercent);
+            String stars = String.valueOf((new char[roundedPercent])).replace("\0", "*");
             String line = String.format("%7s :%7d: ", i + 1, sumNum);
 
             lineStr.append(line);
@@ -54,7 +54,7 @@ public class Simulation {
     }
 
     public static void main(String[] args) {
-        Simulation sim = new Simulation(2, 10000);
+        Simulation sim = new Simulation(2, 1000000);
 
         sim.runSimulation();
 
